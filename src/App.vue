@@ -1,20 +1,27 @@
 <template>
-<h1> {{title}}</h1>
-<p>Welcome...</p>
+  <h1>{{ title }}</h1>
+  <p>Welcome...</p>
 
-<div v-if="showModal">
-  <Modal theme="" @close="toggleModal">
-    <template v-slot:links>
-      <a href="#">sign up now </a>
-      <a href="#">more info</a>
-    </template>
-    <h1>Sign up for giveaway</h1>
-    <p>grab your ninja swag for half price</p>
-  </Modal>
+  <div v-if="showModal">
+    <Modal theme="sale" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">sign up now</a>
+        <a href="#">more info</a>
+      </template>
+      <h1>Ninja Givaway!</h1>
+      <p>Grab your ninja swag for half price!</p>
+    </Modal>
+  </div> 
 
-</div>
+  <div v-if="showModalTwo">
+    <Modal @close="toggleModalTwo">
+      <h1>Sign up to the Newsletter</h1>
+      <p>For updates and promo codes!</p>
+    </Modal>
+  </div>
 
-<button @click.left="toggleModal">open modal</button>
+  <button @click="toggleModal">open modal</button>
+  <button @click="toggleModalTwo">open modal 2</button>
 </template>
 
 <script>
@@ -25,21 +32,17 @@ export default {
   data(){
     return{
       title: 'My First Vue App :)',
-      header:'Sign up for giveaway',
-      text: 'grab your ninja swag for half price',
-      showModal: false
+      showModal: false,
+      showModalTwo: false,
     }
   },
 
   methods:{
-  //   handleClick(){
-  //     console.log(this.$refs.name)
-  //     this.$refs.name.classList.add('active')
-  //     this.$refs.name.focus()
-  //   }
-
-  toggleModal(){
-    this.showModal = !this.showModal
+    toggleModal() {
+      this.showModal = !this.showModal
+    },
+  toggleModalTwo(){
+    this.showModalTwo = !this.showModalTwo
   }
   }
 }
